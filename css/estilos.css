@@ -1,0 +1,383 @@
+:root {
+    --cor-principal: #8b4513;
+    --cor-principal-escura: #66320d;
+    --cor-secundaria: #d69b5c;
+    --cor-fundo: #f7f4f0;
+    --cor-texto: #2f2f2f;
+    --cor-sidebar: #2d211b;
+    --cor-branca: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* =========================
+   NAVBAR INICIAL
+========================= */
+
+.navbar-inovapan {
+    background-color: var(--cor-sidebar);
+}
+
+.navbar-inovapan .navbar-brand {
+    color: white;
+    font-size: 1.4rem;
+}
+
+.navbar-inovapan .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.navbar-inovapan .nav-link:hover {
+    color: white;
+}
+
+/* =========================
+   PÁGINA INICIAL
+========================= */
+
+.pagina-inicial {
+    min-height: 100vh;
+}
+
+.hero-inovapan {
+    background: linear-gradient(
+        135deg,
+        #8b4513,
+        #b66b30
+    );
+    color: white;
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.hero-inovapan h1 span {
+    color: #ffd9a8;
+}
+
+.badge-inovapan {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 20px;
+}
+
+.btn-inovapan {
+    background-color: var(--cor-principal);
+    color: white;
+    border: none;
+}
+
+.btn-inovapan:hover {
+    background-color: var(--cor-principal-escura);
+    color: white;
+}
+
+.hero-inovapan .btn-inovapan {
+    background-color: white;
+    color: var(--cor-principal);
+}
+
+.hero-inovapan .btn-inovapan:hover {
+    background-color: #f1f1f1;
+    color: var(--cor-principal-escura);
+}
+
+.card-inicial {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.icone-inicial {
+    width: 70px;
+    height: 70px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5e8db;
+    color: var(--cor-principal);
+    font-size: 2rem;
+}
+
+.item-inicial {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.item-inicial i {
+    color: var(--cor-principal);
+}
+
+.footer-inovapan {
+    background-color: var(--cor-sidebar);
+    color: white;
+    padding: 20px 0;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    background-color: var(--cor-sidebar);
+    color: white;
+    flex-shrink: 0;
+}
+
+.sidebar-logo {
+    padding: 25px 25px 5px;
+}
+
+.sidebar-logo a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.sidebar-subtitle {
+    color: #c8bbb2;
+    font-size: 0.8rem;
+    padding: 0 25px 25px;
+}
+
+.sidebar-menu {
+    padding: 0 15px;
+}
+
+.sidebar-menu a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ddd;
+    text-decoration: none;
+    padding: 13px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+}
+
+.sidebar-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.sidebar-menu a i {
+    font-size: 1.1rem;
+}
+
+.sidebar-menu hr {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.conteudo-principal {
+    width: calc(100% - 250px);
+    min-height: 100vh;
+}
+
+.topbar {
+    min-height: 70px;
+    background-color: white;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+.titulo-pagina {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.usuario-topo {
+    color: #666;
+}
+
+.btn-menu-mobile {
+    display: none;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+    border: 1px solid #e9e3de;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.card-dashboard {
+    height: 100%;
+}
+
+.icone-card {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5e8db;
+    color: var(--cor-principal);
+    border-radius: 10px;
+    font-size: 1.4rem;
+    margin-bottom: 18px;
+}
+
+.card-dashboard h2 {
+    font-weight: bold;
+}
+
+.card-relatorio {
+    height: 100%;
+}
+
+.icon-relatorio {
+    font-size: 2rem;
+    color: var(--cor-principal);
+}
+
+/* =========================
+   TABELAS
+========================= */
+
+.table thead th {
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.table tbody td {
+    vertical-align: middle;
+}
+
+.table {
+    margin-bottom: 0;
+}
+
+/* =========================
+   ESTADO VAZIO
+========================= */
+
+.estado-vazio {
+    text-align: center;
+    padding: 40px 20px;
+    color: #777;
+}
+
+.estado-vazio i {
+    font-size: 3rem;
+    color: #c6b6aa;
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* =========================
+   PEDIDOS
+========================= */
+
+.valor-total {
+    color: var(--cor-principal);
+}
+
+.linha-relatorio {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.linha-relatorio:last-child {
+    border-bottom: none;
+}
+
+/* =========================
+   MENU MOBILE
+========================= */
+
+.menu-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.menu-mobile a {
+    color: #333;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.menu-mobile a:hover {
+    background-color: #f3f3f3;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 991px) {
+
+    .sidebar {
+        display: none;
+    }
+
+    .conteudo-principal {
+        width: 100%;
+    }
+
+    .btn-menu-mobile {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .usuario-topo {
+        display: none;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .topbar {
+        padding: 0 15px;
+    }
+
+    .container-fluid.p-4 {
+        padding: 20px !important;
+    }
+
+    .hero-inovapan h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-inovapan .lead {
+        font-size: 1rem;
+    }
+
+    .card-inicial {
+        margin-bottom: 30px;
+    }
+
+}
