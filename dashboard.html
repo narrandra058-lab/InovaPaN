@@ -1,336 +1,328 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | InovaPan</title>
+<title>Dashboard | InovaPan</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
-
-    <link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/estilo.css">
 
 </head>
 
 <body>
 
-<div class="d-flex">
+<div class="layout-sistema">
 
-    <!-- MENU LATERAL -->
+<aside class="sidebar">
 
-    <aside class="sidebar">
+<a href="index.html" class="logo-inovapan">
 
-        <div class="sidebar-logo">
+<span class="logo-icon">
+<i class="bi bi-cup-hot-fill"></i>
+</span>
 
-            <a href="index.html">
-                <i class="bi bi-shop"></i>
-                InovaPan
-            </a>
+<span>
+<strong>InovaPan</strong>
+<small>Gestão de Panificadora</small>
+</span>
 
-        </div>
+</a>
 
-        <div class="sidebar-subtitle">
-            Sistema de Gestão
-        </div>
 
-        <nav class="sidebar-menu">
+<p class="menu-titulo">Menu principal</p>
 
-            <a href="dashboard.html">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
-            </a>
+<a href="dashboard.html" class="menu-link ativo">
+<i class="bi bi-grid-1x2-fill"></i>
+<span>Dashboard</span>
+</a>
 
-            <a href="clientes.html">
-                <i class="bi bi-people"></i>
-                Clientes
-            </a>
+<a href="pedidos.html" class="menu-link">
+<i class="bi bi-receipt"></i>
+<span>Pedidos</span>
+</a>
 
-            <a href="produtos.html">
-                <i class="bi bi-box-seam"></i>
-                Produtos
-            </a>
+<a href="produtos.html" class="menu-link">
+<i class="bi bi-basket2-fill"></i>
+<span>Produtos</span>
+</a>
 
-            <a href="pedidos.html">
-                <i class="bi bi-cart-check"></i>
-                Pedidos
-            </a>
+<a href="clientes.html" class="menu-link">
+<i class="bi bi-people-fill"></i>
+<span>Clientes</span>
+</a>
 
-            <a href="relatorios.html">
-                <i class="bi bi-bar-chart"></i>
-                Relatórios
-            </a>
+<a href="relatorios.html" class="menu-link">
+<i class="bi bi-bar-chart-fill"></i>
+<span>Relatórios</span>
+</a>
 
-            <hr>
 
-            <a href="index.html">
-                <i class="bi bi-house"></i>
-                Página inicial
-            </a>
+<p class="menu-titulo">Sistema</p>
 
-        </nav>
+<a href="index.html" class="menu-link">
+<i class="bi bi-house-fill"></i>
+<span>Página inicial</span>
+</a>
 
-    </aside>
 
-    <!-- CONTEÚDO -->
+<div class="sidebar-final">
+<i class="bi bi-info-circle"></i>
+InovaPan · Projeto Integrador II
+</div>
 
-    <main class="conteudo-principal">
+</aside>
 
-        <header class="topbar">
 
-            <div>
+<main class="conteudo-sistema">
 
-                <button
-                    class="btn btn-menu-mobile"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#menuMobile"
-                >
-                    <i class="bi bi-list"></i>
-                </button>
+<header class="topbar">
 
-                <span class="titulo-pagina">
-                    Dashboard
-                </span>
+<div class="topbar-titulo">
 
-            </div>
+<strong>Dashboard</strong>
 
-            <div class="usuario-topo">
-                <i class="bi bi-person-circle"></i>
-                Administrador
-            </div>
-
-        </header>
-
-        <section class="container-fluid p-4">
-
-            <div class="mb-4">
-
-                <h1 class="fw-bold">
-                    Visão geral
-                </h1>
-
-                <p class="text-muted">
-                    Acompanhe os principais dados do InovaPan.
-                </p>
-
-            </div>
-
-            <div class="row g-4">
-
-                <div class="col-md-6 col-xl-3">
-
-                    <div class="card card-dashboard">
-
-                        <div class="card-body">
-
-                            <div class="icone-card">
-                                <i class="bi bi-people"></i>
-                            </div>
-
-                            <p class="text-muted mb-1">
-                                Clientes
-                            </p>
-
-                            <h2 id="totalClientes">
-                                0
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-
-                    <div class="card card-dashboard">
-
-                        <div class="card-body">
-
-                            <div class="icone-card">
-                                <i class="bi bi-box-seam"></i>
-                            </div>
-
-                            <p class="text-muted mb-1">
-                                Produtos
-                            </p>
-
-                            <h2 id="totalProdutos">
-                                0
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-
-                    <div class="card card-dashboard">
-
-                        <div class="card-body">
-
-                            <div class="icone-card">
-                                <i class="bi bi-cart-check"></i>
-                            </div>
-
-                            <p class="text-muted mb-1">
-                                Pedidos
-                            </p>
-
-                            <h2 id="totalPedidos">
-                                0
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 col-xl-3">
-
-                    <div class="card card-dashboard">
-
-                        <div class="card-body">
-
-                            <div class="icone-card">
-                                <i class="bi bi-currency-dollar"></i>
-                            </div>
-
-                            <p class="text-muted mb-1">
-                                Vendas
-                            </p>
-
-                            <h2 id="valorVendas">
-                                R$ 0,00
-                            </h2>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card mt-5">
-
-                <div class="card-header bg-white py-3">
-
-                    <h5 class="mb-0 fw-bold">
-                        Pedidos recentes
-                    </h5>
-
-                </div>
-
-                <div class="card-body">
-
-                    <div class="table-responsive">
-
-                        <table class="table align-middle">
-
-                            <thead>
-
-                                <tr>
-                                    <th>Pedido</th>
-                                    <th>Cliente</th>
-                                    <th>Data</th>
-                                    <th>Total</th>
-                                    <th>Status</th>
-                                </tr>
-
-                            </thead>
-
-                            <tbody id="tabelaPedidosRecentes">
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
+<span>Visão geral da sua panificadora</span>
 
 </div>
 
-<!-- MENU MOBILE -->
+<div class="usuario">
 
-<div
-    class="offcanvas offcanvas-start"
-    tabindex="-1"
-    id="menuMobile"
->
+<div>
+<strong>Administrador</strong>
+</div>
 
-    <div class="offcanvas-header">
-
-        <h5 class="fw-bold">
-            <i class="bi bi-shop"></i>
-            InovaPan
-        </h5>
-
-        <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="offcanvas"
-        ></button>
-
-    </div>
-
-    <div class="offcanvas-body">
-
-        <nav class="menu-mobile">
-
-            <a href="dashboard.html">
-                <i class="bi bi-speedometer2"></i>
-                Dashboard
-            </a>
-
-            <a href="clientes.html">
-                <i class="bi bi-people"></i>
-                Clientes
-            </a>
-
-            <a href="produtos.html">
-                <i class="bi bi-box-seam"></i>
-                Produtos
-            </a>
-
-            <a href="pedidos.html">
-                <i class="bi bi-cart-check"></i>
-                Pedidos
-            </a>
-
-            <a href="relatorios.html">
-                <i class="bi bi-bar-chart"></i>
-                Relatórios
-            </a>
-
-        </nav>
-
-    </div>
+<div class="usuario-avatar">
+A
+</div>
 
 </div>
 
-<script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+</header>
+
+
+<div class="pagina-conteudo">
+
+
+<section class="dashboard-hero">
+
+<div class="dashboard-data">
+
+<h1>Bom dia! ☕</h1>
+
+<p>
+Aqui está um resumo do movimento da sua panificadora.
+</p>
+
+</div>
+
+</section>
+
+
+<div class="metricas">
+
+<div class="metrica">
+
+<div class="metrica-top">
+
+<span>Clientes</span>
+
+<div class="metrica-icon">
+<i class="bi bi-people-fill"></i>
+</div>
+
+</div>
+
+<strong id="totalClientes">0</strong>
+
+<span>clientes cadastrados</span>
+
+</div>
+
+
+<div class="metrica">
+
+<div class="metrica-top">
+
+<span>Produtos</span>
+
+<div class="metrica-icon">
+<i class="bi bi-basket-fill"></i>
+</div>
+
+</div>
+
+<strong id="totalProdutos">8</strong>
+
+<span>produtos disponíveis</span>
+
+</div>
+
+
+<div class="metrica">
+
+<div class="metrica-top">
+
+<span>Pedidos</span>
+
+<div class="metrica-icon">
+<i class="bi bi-receipt"></i>
+</div>
+
+</div>
+
+<strong id="totalPedidos">0</strong>
+
+<span>pedidos registrados</span>
+
+</div>
+
+
+<div class="metrica">
+
+<div class="metrica-top">
+
+<span>Vendas</span>
+
+<div class="metrica-icon">
+<i class="bi bi-cash-stack"></i>
+</div>
+
+</div>
+
+<strong id="totalVendas">R$ 0,00</strong>
+
+<span>valor acumulado</span>
+
+</div>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+
+<div class="painel">
+
+<div class="painel-cabecalho">
+
+<h3>Vendas da semana</h3>
+
+<span>Últimos 7 dias</span>
+
+</div>
+
+
+<div class="grafico">
+
+<div class="barra" style="height:45%;">
+<span>Seg</span>
+</div>
+
+<div class="barra" style="height:60%;">
+<span>Ter</span>
+</div>
+
+<div class="barra destaque" style="height:85%;">
+<span>Qua</span>
+</div>
+
+<div class="barra" style="height:55%;">
+<span>Qui</span>
+</div>
+
+<div class="barra" style="height:75%;">
+<span>Sex</span>
+</div>
+
+<div class="barra" style="height:92%;">
+<span>Sáb</span>
+</div>
+
+<div class="barra" style="height:50%;">
+<span>Dom</span>
+</div>
+
+</div>
+
+</div>
+
+
+<div class="painel">
+
+<div class="painel-cabecalho">
+
+<h3>Mais vendidos</h3>
+
+<span>Produtos</span>
+
+</div>
+
+
+<div class="produto-vendido">
+
+<img class="produto-mini"
+src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=200&q=80">
+
+<div>
+<strong>Pão Francês</strong>
+<small>Mais vendido</small>
+</div>
+
+</div>
+
+
+<div class="produto-vendido">
+
+<img class="produto-mini"
+src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=200&q=80">
+
+<div>
+<strong>Bolo de Chocolate</strong>
+<small>Alta procura</small>
+</div>
+
+</div>
+
+
+<div class="produto-vendido">
+
+<img class="produto-mini"
+src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=200&q=80">
+
+<div>
+<strong>Café Expresso</strong>
+<small>Alta procura</small>
+</div>
+
+</div>
+
+
+<div class="produto-vendido">
+
+<img class="produto-mini"
+src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=200&q=80">
+
+<div>
+<strong>Pão de Queijo</strong>
+<small>Alta procura</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
 
 <script src="js/app.js"></script>
 
