@@ -6,109 +6,249 @@
 
     <title>InovaPan | Sistema de Gestão</title>
 
-    <!-- Bootstrap -->
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Bootstrap Icons -->
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
-
-    <!-- Fonte Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
-
-    <!-- CSS do projeto -->
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 
-<body>
+<body class="pagina-inicial">
 
-    <div class="container py-5">
+<header class="navbar navbar-expand-lg navbar-inicial">
+    <div class="container">
 
-        <div class="text-center mb-5">
-            <h1 class="fw-bold">InovaPan</h1>
+        <a href="index.html" class="logo-inovapan">
+            <span class="logo-icon">
+                <i class="bi bi-cup-hot-fill"></i>
+            </span>
 
-            <p class="text-muted">
-                Sistema de Gestão de Pedidos para Panificadora
-            </p>
-        </div>
+            <span>
+                <strong>InovaPan</strong>
+                <small>Gestão de Panificadora</small>
+            </span>
+        </a>
 
-        <div class="row g-4">
+        <a href="dashboard.html" class="btn btn-entrar">
+            Entrar no sistema
+            <i class="bi bi-arrow-right"></i>
+        </a>
 
-            <div class="col-md-6 col-lg-3">
-                <a href="dashboard.html" class="text-decoration-none">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-speedometer2 fs-1"></i>
-                            <h5 class="mt-3">Dashboard</h5>
-                            <p class="text-muted mb-0">
-                                Visão geral do sistema
-                            </p>
-                        </div>
+    </div>
+</header>
+
+
+<main>
+
+<section class="hero-inicial">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-lg-6">
+
+                <span class="badge-hero">
+                    <i class="bi bi-stars"></i>
+                    Gestão simples e inteligente
+                </span>
+
+                <h1>
+                    Pão, café e
+                    <span>boas histórias.</span>
+                </h1>
+
+                <p>
+                    O InovaPan facilita o gerenciamento de pedidos,
+                    produtos, clientes e vendas da sua panificadora.
+                </p>
+
+                <div class="hero-botoes">
+
+                    <a href="dashboard.html" class="btn btn-principal btn-lg">
+                        Acessar sistema
+                        <i class="bi bi-arrow-right"></i>
+                    </a>
+
+                    <a href="produtos.html" class="btn btn-outline-marrom btn-lg">
+                        Ver produtos
+                    </a>
+
+                </div>
+
+                <div class="hero-info">
+
+                    <div>
+                        <strong>100%</strong>
+                        <span>Digital</span>
                     </div>
-                </a>
+
+                    <div>
+                        <strong>Fácil</strong>
+                        <span>de usar</span>
+                    </div>
+
+                    <div>
+                        <strong>Rápido</strong>
+                        <span>e organizado</span>
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="col-md-6 col-lg-3">
-                <a href="clientes.html" class="text-decoration-none">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-people fs-1"></i>
-                            <h5 class="mt-3">Clientes</h5>
-                            <p class="text-muted mb-0">
-                                Cadastro de clientes
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
 
-            <div class="col-md-6 col-lg-3">
-                <a href="produtos.html" class="text-decoration-none">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-box-seam fs-1"></i>
-                            <h5 class="mt-3">Produtos</h5>
-                            <p class="text-muted mb-0">
-                                Cadastro de produtos
-                            </p>
-                        </div>
-                    </div>
-                </a>
-            </div>
+            <div class="col-lg-6">
 
-            <div class="col-md-6 col-lg-3">
-                <a href="pedidos.html" class="text-decoration-none">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <i class="bi bi-cart-check fs-1"></i>
-                            <h5 class="mt-3">Pedidos</h5>
-                            <p class="text-muted mb-0">
-                                Registro de pedidos
-                            </p>
+                <div class="hero-imagem">
+
+                    <div class="hero-fundo"></div>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=1000&q=85"
+                        alt="Pães frescos">
+
+                    <div class="card-flutuante card-pedido">
+                        <div class="icone-pedido">
+                            <i class="bi bi-check-lg"></i>
+                        </div>
+
+                        <div>
+                            <strong>Pedido finalizado</strong>
+                            <small>#00125 · R$ 48,90</small>
                         </div>
                     </div>
-                </a>
+
+                    <div class="card-flutuante card-cafe">
+                        <i class="bi bi-cup-hot-fill"></i>
+                        <span>Café fresco</span>
+                    </div>
+
+                </div>
+
             </div>
 
         </div>
 
     </div>
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-    </script>
+</section>
 
-    <script src="js/app.js"></script>
+
+<section class="recursos">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <span class="titulo-pequeno">TUDO EM UM SÓ LUGAR</span>
+
+            <h2>
+                Gestão feita para
+                <span>facilitar seu dia</span>
+            </h2>
+
+            <p>
+                Organize a rotina da sua panificadora de maneira simples.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <div class="recurso-card">
+
+                    <div class="recurso-icon">
+                        <i class="bi bi-basket2-fill"></i>
+                    </div>
+
+                    <h3>Produtos</h3>
+
+                    <p>
+                        Cadastre pães, bolos, cafés, tortas,
+                        bebidas e todos os produtos da sua padaria.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="recurso-card">
+
+                    <div class="recurso-icon">
+                        <i class="bi bi-receipt-cutoff"></i>
+                    </div>
+
+                    <h3>Pedidos</h3>
+
+                    <p>
+                        Registre pedidos, adicione produtos
+                        e acompanhe automaticamente o valor total.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="recurso-card">
+
+                    <div class="recurso-icon">
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+
+                    <h3>Relatórios</h3>
+
+                    <p>
+                        Acompanhe vendas, pedidos, produtos
+                        mais vendidos e desempenho da padaria.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer-inicial">
+
+    <div class="container">
+
+        <div class="logo-inovapan">
+            <span class="logo-icon">
+                <i class="bi bi-cup-hot-fill"></i>
+            </span>
+
+            <span>
+                <strong>InovaPan</strong>
+                <small>Gestão de Panificadora</small>
+            </span>
+        </div>
+
+        <p>
+            Sistema de gestão de pedidos para panificadora.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
