@@ -1,0 +1,521 @@
+"use strict";
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const clienteSelect =
+            document.getElementById(
+                "clientePedido"
+            );
+
+        const produtoSelect =
+            document.getElementById(
+                "produtoPedido"
+            );
+
+        const quantidadeInput =
+            document.getElementById(
+                "quantidadeProduto"
+            );
+
+        const tabela =
+            document.getElementById(
+                "tabelaItensPedido"
+            );
+
+        const totalElemento =
+            document.getElementById(
+                "totalPedido"
+            );
+
+        const vazio =
+            document.getElementById(
+                "pedidoSemItens"
+            );
+
+        const mensagem =
+            document.getElementById(
+                "mensagemPedido"
+            );
+
+        const btnAdicionar =
+            document.getElementById(
+                "btnAdicionarProduto"
+            );
+
+        const btnSalvar =
+            document.getElementById(
+                "btnSalvarPedido"
+            );
+
+        const btnLimpar =
+            document.getElementById(
+                "btnLimparPedido"
+            );
+
+        if (!clienteSelect) {
+            return;
+        }
+
+        let itensPedido = [];
+
+        /* =========================
+           CLIENTES
+        ========================= */
+
+        function carregarClientes() {
+
+            const clientes =
+                InovaPan.obterDados(
+                    InovaPan.CHAVE_CLIENTES
+                );
+
+            clienteSelect.innerHTML = `
+                <option value="">
+                    Selecione um cliente
+                </option>
+            `;
+
+            clientes.forEach(cliente => {
+
+                clienteSelect.innerHTML += `
+
+                    <option value="${cliente.id}">
+                        ${InovaPan.escaparHTML(cliente.nome)}
+                    </option>
+
+                `;
+
+            });
+
+        }
+
+        /* =========================
+           PRODUTOS
+        ========================= */
+
+        function carregarProdutos() {
+
+            const produtos =
+                InovaPan.obterDados(
+                    InovaPan.CHAVE_PRODUTOS
+                );
+
+            produtoSelect.innerHTML = `
+                <option value="">
+                    Selecione um produto
+                </option>
+            `;
+
+            produtos.forEach(produto => {
+
+                produtoSelect.innerHTML += `
+
+                    <option value="${produto.id}">
+                        ${InovaPan.escaparHTML(produto.nome)}
+                        —
+                        ${InovaPan.formatarMoeda(produto.preco)}
+                    </option>
+
+                `;
+
+            });
+
+        }
+
+        /* =========================
+           ADICIONAR PRODUTO
+        ========================= */
+
+        btnAdicionar.addEventListener(
+            "click",
+            () => {
+
+                const produtoId =
+                    produtoSelect.value;
+
+                const quantidade =
+                    Number(
+                        quantidadeInput.value
+                    );
+
+                if (!produtoId) {
+
+                    mostrarMensagem(
+                        "Selecione um produto.",
+                        "warning"
+                    );
+
+                    return;
+
+                }
+
+                if (
+                    !quantidade ||
+                    quantidade < 1
+                ) {
+
+                    mostrarMensagem(
+                        "Informe uma quantidade válida.",
+                        "warning"
+                    );
+
+                    return;
+
+                }
+
+                const produtos =
+                    InovaPan.obterDados(
+                        InovaPan.CHAVE_PRODUTOS
+                    );
+
+                const produto =
+                    produtos.find(
+                        item =>
+                            item.id === produtoId
+                    );
+
+                if (!produto) {
+
+                    mostrarMensagem(
+                        "Produto não encontrado.",
+                        "danger"
+                    );
+
+                    return;
+
+                }
+
+                const itemExistente =
+                    itensPedido.find(
+                        item =>
+                            item.produtoId === produtoId
+                    );
+
+                if (itemExistente) {
+
+                    itemExistente.quantidade +=
+                        quantidade;
+
+                } else {
+
+                    itensPedido.push({
+
+                        produtoId:
+                            produto.id,
+
+                        nome:
+                            produto.nome,
+
+                        preco:
+                            Number(produto.preco),
+
+                        quantidade
+
+                    });
+
+                }
+
+                quantidadeInput.value = 1;
+
+                produtoSelect.value = "";
+
+                renderizarItens();
+
+            }
+        );
+
+        /* =========================
+           RENDERIZAR ITENS
+        ========================= */
+
+        function renderizarItens() {
+
+            tabela.innerHTML = "";
+
+            vazio.style.display =
+                itensPedido.length === 0
+                    ? "block"
+                    : "none";
+
+            let total = 0;
+
+            itensPedido.forEach(
+                (item, index) => {
+
+                    const subtotal =
+                        item.preco *
+                        item.quantidade;
+
+                    total += subtotal;
+
+                    tabela.innerHTML += `
+
+                        <tr>
+
+                            <td>
+                                ${InovaPan.escaparHTML(item.nome)}
+                            </td>
+
+                            <td>
+                                ${InovaPan.formatarMoeda(item.preco)}
+                            </td>
+
+                            <td>
+                                ${item.quantidade}
+                            </td>
+
+                            <td>
+                                <strong>
+                                    ${InovaPan.formatarMoeda(subtotal)}
+                                </strong>
+                            </td>
+
+                            <td class="text-end">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm btn-outline-danger"
+                                    onclick="removerItem(${index})"
+                                >
+
+                                    <i class="bi bi-trash"></i>
+
+                                </button>
+
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                }
+            );
+
+            totalElemento.textContent =
+                InovaPan.formatarMoeda(total);
+
+        }
+
+        /* =========================
+           REMOVER ITEM
+        ========================= */
+
+        window.removerItem =
+            function(index) {
+
+                itensPedido.splice(index, 1);
+
+                renderizarItens();
+
+            };
+
+        /* =========================
+           SALVAR PEDIDO
+        ========================= */
+
+        btnSalvar.addEventListener(
+            "click",
+            () => {
+
+                const clienteId =
+                    clienteSelect.value;
+
+                if (!clienteId) {
+
+                    mostrarMensagem(
+                        "Selecione um cliente antes de salvar o pedido.",
+                        "warning"
+                    );
+
+                    return;
+
+                }
+
+                if (itensPedido.length === 0) {
+
+                    mostrarMensagem(
+                        "Adicione pelo menos um produto ao pedido.",
+                        "warning"
+                    );
+
+                    return;
+
+                }
+
+                const clientes =
+                    InovaPan.obterDados(
+                        InovaPan.CHAVE_CLIENTES
+                    );
+
+                const cliente =
+                    clientes.find(
+                        item =>
+                            item.id === clienteId
+                    );
+
+                if (!cliente) {
+
+                    mostrarMensagem(
+                        "Cliente não encontrado.",
+                        "danger"
+                    );
+
+                    return;
+
+                }
+
+                const total =
+                    itensPedido.reduce(
+                        (soma, item) =>
+                            soma +
+                            (
+                                item.preco *
+                                item.quantidade
+                            ),
+                        0
+                    );
+
+                const pedido = {
+
+                    id:
+                        InovaPan.gerarId(),
+
+                    clienteId,
+
+                    clienteNome:
+                        cliente.nome,
+
+                    itens:
+                        itensPedido.map(item => ({
+
+                            produtoId:
+                                item.produtoId,
+
+                            nome:
+                                item.nome,
+
+                            preco:
+                                item.preco,
+
+                            quantidade:
+                                item.quantidade,
+
+                            subtotal:
+                                item.preco *
+                                item.quantidade
+
+                        })),
+
+                    total,
+
+                    status:
+                        "Pendente",
+
+                    criadoEm:
+                        new Date().toISOString()
+
+                };
+
+                const pedidos =
+                    InovaPan.obterDados(
+                        InovaPan.CHAVE_PEDIDOS
+                    );
+
+                pedidos.push(pedido);
+
+                InovaPan.salvarDados(
+                    InovaPan.CHAVE_PEDIDOS,
+                    pedidos
+                );
+
+                mostrarMensagem(
+                    "Pedido salvo com sucesso!",
+                    "success"
+                );
+
+                limparPedido();
+
+            }
+        );
+
+        /* =========================
+           LIMPAR PEDIDO
+        ========================= */
+
+        btnLimpar.addEventListener(
+            "click",
+            () => {
+
+                const confirmar =
+                    itensPedido.length > 0
+                        ? confirm(
+                            "Deseja limpar o pedido atual?"
+                        )
+                        : true;
+
+                if (confirmar) {
+                    limparPedido();
+                }
+
+            }
+        );
+
+        function limparPedido() {
+
+            itensPedido = [];
+
+            clienteSelect.value = "";
+
+            produtoSelect.value = "";
+
+            quantidadeInput.value = 1;
+
+            renderizarItens();
+
+        }
+
+        /* =========================
+           MENSAGEM
+        ========================= */
+
+        function mostrarMensagem(
+            texto,
+            tipo
+        ) {
+
+            mensagem.innerHTML = `
+
+                <div
+                    class="alert alert-${tipo} alert-dismissible fade show"
+                    role="alert"
+                >
+
+                    ${texto}
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                    ></button>
+
+                </div>
+
+            `;
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+        carregarClientes();
+
+        carregarProdutos();
+
+        renderizarItens();
+
+    }
+);
