@@ -1,390 +1,1013 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+/* =========================================================
+   INOVAPAN
+   Sistema de Gestão de Pedidos
+========================================================= */
+
+
+/* =========================================================
+   PRODUTOS
+========================================================= */
+
+const produtosPadrao = [
+
+    {
+        id: 1,
+        nome: "Pão Francês",
+        categoria: "Pães",
+        preco: 0.80,
+        imagem: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=600&q=85",
+        descricao: "Pão francês crocante e fresquinho."
+    },
+
+    {
+        id: 2,
+        nome: "Pão de Queijo",
+        categoria: "Pães",
+        preco: 3.50,
+        imagem: "https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=600&q=85",
+        descricao: "Pão de queijo quentinho e macio."
+    },
+
+    {
+        id: 3,
+        nome: "Bolo de Chocolate",
+        categoria: "Bolos",
+        preco: 8.50,
+        imagem: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=85",
+        descricao: "Bolo de chocolate com cobertura."
+    },
+
+    {
+        id: 4,
+        nome: "Torta de Frango",
+        categoria: "Tortas",
+        preco: 9.90,
+        imagem: "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=85",
+        descricao: "Torta salgada recheada com frango."
+    },
 
-<head>
+    {
+        id: 5,
+        nome: "Café Expresso",
+        categoria: "Cafés",
+        preco: 5.00,
+        imagem: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=85",
+        descricao: "Café expresso preparado na hora."
+    },
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {
+        id: 6,
+        nome: "Cappuccino",
+        categoria: "Cafés",
+        preco: 7.50,
+        imagem: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=600&q=85",
+        descricao: "Cappuccino cremoso e aromático."
+    },
 
-<title>Pedidos | InovaPan</title>
+    {
+        id: 7,
+        nome: "Chá Natural",
+        categoria: "Chás",
+        preco: 4.50,
+        imagem: "https://images.unsplash.com/photo-1544787219-7f47ccb76574?auto=format&fit=crop&w=600&q=85",
+        descricao: "Chá natural preparado com carinho."
+    },
 
-<link
-href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-rel="stylesheet">
+    {
+        id: 8,
+        nome: "Suco Natural",
+        categoria: "Sucos",
+        preco: 6.00,
+        imagem: "https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=600&q=85",
+        descricao: "Suco natural de frutas."
+    }
 
-<link
-rel="stylesheet"
-href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+];
 
-<link rel="stylesheet" href="css/estilo.css">
 
-</head>
+function obterProdutos() {
 
-<body>
+    let produtos =
+        JSON.parse(localStorage.getItem("inovapan_produtos"));
 
-<div class="d-flex">
+    if (!produtos) {
 
-<aside class="sidebar">
+        localStorage.setItem(
+            "inovapan_produtos",
+            JSON.stringify(produtosPadrao)
+        );
 
-<div class="sidebar-logo">
+        return produtosPadrao;
+    }
 
-<a href="index.html">
+    return produtos;
+}
 
-<i class="bi bi-shop"></i>
-InovaPan
 
-</a>
+/* =========================================================
+   FORMATAÇÃO
+========================================================= */
 
-</div>
+function moeda(valor) {
 
-<div class="sidebar-subtitle">
-Sistema de Gestão
-</div>
+    return Number(valor).toLocaleString(
+        "pt-BR",
+        {
+            style: "currency",
+            currency: "BRL"
+        }
+    );
 
-<nav class="sidebar-menu">
+}
 
-<a href="dashboard.html">
-<i class="bi bi-speedometer2"></i>
-Dashboard
-</a>
 
-<a href="clientes.html">
-<i class="bi bi-people"></i>
-Clientes
-</a>
+/* =========================================================
+   TOAST
+========================================================= */
 
-<a href="produtos.html">
-<i class="bi bi-box-seam"></i>
-Produtos
-</a>
+function mostrarToast(mensagem) {
 
-<a href="pedidos.html">
-<i class="bi bi-cart-check"></i>
-Pedidos
-</a>
+    let toast = document.getElementById("toast");
 
-<a href="relatorios.html">
-<i class="bi bi-bar-chart"></i>
-Relatórios
-</a>
+    if (!toast) return;
 
-<hr>
+    toast.textContent = mensagem;
 
-<a href="index.html">
-<i class="bi bi-house"></i>
-Página inicial
-</a>
+    toast.classList.add("mostrar");
 
-</nav>
+    setTimeout(() => {
 
-</aside>
+        toast.classList.remove("mostrar");
 
-<main class="conteudo-principal">
+    }, 2500);
 
-<header class="topbar">
+}
 
-<div>
 
-<button
-class="btn btn-menu-mobile"
-data-bs-toggle="offcanvas"
-data-bs-target="#menuMobile">
+/* =========================================================
+   LISTA DE PRODUTOS
+========================================================= */
 
-<i class="bi bi-list"></i>
+function carregarProdutos() {
 
-</button>
+    const lista =
+        document.getElementById("listaProdutos");
 
-<span class="titulo-pagina">
-Pedidos
-</span>
+    if (!lista) return;
 
-</div>
+    const busca =
+        document.getElementById("buscarProduto")?.value
+        .toLowerCase() || "";
 
-<div class="usuario-topo">
-<i class="bi bi-person-circle"></i>
-Administrador
-</div>
+    const categoria =
+        document.getElementById("filtroCategoria")?.value
+        || "todos";
 
-</header>
+    const produtos = obterProdutos();
 
-<section class="container-fluid p-4">
+    const filtrados = produtos.filter(produto => {
 
-<div class="mb-4">
+        const correspondeBusca =
+            produto.nome
+                .toLowerCase()
+                .includes(busca);
 
-<h1 class="fw-bold">
-Registro de Pedidos
-</h1>
+        const correspondeCategoria =
+            categoria === "todos" ||
+            produto.categoria === categoria;
 
-<p class="text-muted">
-Registre pedidos e acompanhe automaticamente o valor total.
-</p>
+        return correspondeBusca && correspondeCategoria;
 
-</div>
+    });
 
-<div id="mensagemPedido"></div>
 
-<div class="row g-4">
+    lista.innerHTML = "";
 
-<!-- DADOS DO PEDIDO -->
 
-<div class="col-lg-4">
+    filtrados.forEach(produto => {
 
-<div class="card">
+        lista.innerHTML += `
 
-<div class="card-header bg-white">
+        <div class="produto-card">
 
-<h5 class="fw-bold mb-0">
-Dados do pedido
-</h5>
+            <img
+                class="produto-foto"
+                src="${produto.imagem}"
+                alt="${produto.nome}"
+            >
 
-</div>
+            <div class="produto-info">
 
-<div class="card-body">
+                <span class="produto-categoria">
+                    ${produto.categoria}
+                </span>
 
-<div class="mb-3">
+                <h3>
+                    ${produto.nome}
+                </h3>
 
-<label class="form-label">
-Cliente *
-</label>
+                <p>
+                    ${produto.descricao}
+                </p>
 
-<select
-class="form-select"
-id="clientePedido"
-required>
+                <div class="produto-rodape">
 
-<option value="">
-Selecione um cliente
-</option>
+                    <span class="preco">
+                        ${moeda(produto.preco)}
+                    </span>
 
-</select>
+                    <button
+                        class="btn-add"
+                        onclick="adicionarCarrinho(
+                            '${produto.nome}',
+                            ${produto.preco},
+                            '${produto.imagem}'
+                        )"
+                    >
 
-</div>
+                        <i class="bi bi-plus-lg"></i>
 
-<hr>
+                    </button>
 
-<h6 class="fw-bold mb-3">
-Adicionar produto
-</h6>
+                </div>
 
-<div class="mb-3">
+            </div>
 
-<label class="form-label">
-Produto
-</label>
+        </div>
 
-<select
-class="form-select"
-id="produtoPedido">
+        `;
 
-<option value="">
-Selecione um produto
-</option>
+    });
 
-</select>
+}
 
-</div>
 
-<div class="mb-3">
+document
+    .getElementById("buscarProduto")
+    ?.addEventListener(
+        "input",
+        carregarProdutos
+    );
 
-<label class="form-label">
-Quantidade
-</label>
 
-<input
-type="number"
-class="form-control"
-id="quantidadeProduto"
-value="1"
-min="1">
+document
+    .getElementById("filtroCategoria")
+    ?.addEventListener(
+        "change",
+        carregarProdutos
+    );
 
-</div>
 
-<button
-type="button"
-class="btn btn-inovapan w-100"
-id="btnAdicionarProduto">
+/* =========================================================
+   CADASTRAR PRODUTO
+========================================================= */
 
-<i class="bi bi-plus-lg"></i>
-Adicionar produto
+document
+    .getElementById("formProduto")
+    ?.addEventListener(
+        "submit",
+        function(event) {
 
-</button>
+            event.preventDefault();
 
-</div>
 
-</div>
+            const nome =
+                document.getElementById("nomeProduto").value;
 
-</div>
+            const categoria =
+                document.getElementById("categoriaProduto").value;
 
-<!-- ITENS -->
+            const preco =
+                Number(
+                    document.getElementById("precoProduto").value
+                );
 
-<div class="col-lg-8">
 
-<div class="card">
+            const produtos = obterProdutos();
 
-<div class="card-header bg-white">
 
-<h5 class="fw-bold mb-0">
-Itens do pedido
-</h5>
+            produtos.push({
 
-</div>
+                id: Date.now(),
 
-<div class="card-body">
+                nome,
 
-<div class="table-responsive">
+                categoria,
 
-<table class="table align-middle">
+                preco,
 
-<thead>
+                descricao:
+                    "Produto cadastrado no InovaPan.",
 
-<tr>
+                imagem:
+                    "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=85"
 
-<th>Produto</th>
-<th>Preço</th>
-<th>Qtd.</th>
-<th>Subtotal</th>
-<th></th>
+            });
 
-</tr>
 
-</thead>
+            localStorage.setItem(
+                "inovapan_produtos",
+                JSON.stringify(produtos)
+            );
 
-<tbody id="tabelaItensPedido">
 
-</tbody>
+            event.target.reset();
 
-</table>
 
-</div>
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById("modalProduto")
+                )
+                ?.hide();
 
-<div
-id="pedidoSemItens"
-class="estado-vazio">
 
-<i class="bi bi-cart"></i>
+            carregarProdutos();
 
-<p class="mb-0">
-Nenhum produto adicionado.
-</p>
+            mostrarToast(
+                "Produto cadastrado com sucesso!"
+            );
 
-</div>
+        }
+    );
 
-<hr>
 
-<div class="d-flex justify-content-between align-items-center">
+/* =========================================================
+   CLIENTES
+========================================================= */
 
-<h5 class="fw-bold mb-0">
-Total do pedido
-</h5>
+function obterClientes() {
 
-<h3
-class="fw-bold valor-total"
-id="totalPedido">
+    return JSON.parse(
+        localStorage.getItem("inovapan_clientes")
+    ) || [];
 
-R$ 0,00
+}
 
-</h3>
 
-</div>
+function carregarClientes() {
 
-<div class="d-flex justify-content-end gap-2 mt-4">
+    const tabela =
+        document.getElementById("listaClientes");
 
-<button
-type="button"
-class="btn btn-outline-secondary"
-id="btnLimparPedido">
+    if (!tabela) return;
 
-<i class="bi bi-x-circle"></i>
-Limpar
 
-</button>
+    const clientes = obterClientes();
 
-<button
-type="button"
-class="btn btn-inovapan"
-id="btnSalvarPedido">
+    const busca =
+        document.getElementById("buscarCliente")
+        ?.value
+        .toLowerCase() || "";
 
-<i class="bi bi-check-circle"></i>
-Salvar pedido
 
-</button>
+    const filtrados =
+        clientes.filter(cliente =>
 
-</div>
+            cliente.nome
+                .toLowerCase()
+                .includes(busca) ||
 
-</div>
+            cliente.telefone
+                .toLowerCase()
+                .includes(busca) ||
 
-</div>
+            cliente.email
+                .toLowerCase()
+                .includes(busca)
 
-</div>
+        );
 
-</div>
 
-</section>
+    tabela.innerHTML = "";
 
-</main>
 
-</div>
+    if (filtrados.length === 0) {
 
-<!-- MENU MOBILE -->
+        tabela.innerHTML = `
 
-<div class="offcanvas offcanvas-start" id="menuMobile">
+        <tr>
 
-<div class="offcanvas-header">
+            <td colspan="5" class="text-center py-5">
 
-<h5 class="fw-bold">
-<i class="bi bi-shop"></i>
-InovaPan
-</h5>
+                <i class="bi bi-people fs-2 text-muted"></i>
 
-<button
-type="button"
-class="btn-close"
-data-bs-dismiss="offcanvas">
-</button>
+                <p class="mt-2 text-muted">
+                    Nenhum cliente cadastrado.
+                </p>
 
-</div>
+            </td>
 
-<div class="offcanvas-body">
+        </tr>
 
-<nav class="menu-mobile">
+        `;
 
-<a href="dashboard.html">
-<i class="bi bi-speedometer2"></i>
-Dashboard
-</a>
+        return;
+    }
 
-<a href="clientes.html">
-<i class="bi bi-people"></i>
-Clientes
-</a>
 
-<a href="produtos.html">
-<i class="bi bi-box-seam"></i>
-Produtos
-</a>
+    filtrados.forEach(cliente => {
 
-<a href="pedidos.html">
-<i class="bi bi-cart-check"></i>
-Pedidos
-</a>
+        const inicial =
+            cliente.nome.charAt(0).toUpperCase();
 
-<a href="relatorios.html">
-<i class="bi bi-bar-chart"></i>
-Relatórios
-</a>
 
-</nav>
+        tabela.innerHTML += `
 
-</div>
+        <tr>
 
-</div>
+            <td>
 
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+                <div class="cliente-nome">
 
-<script src="js/app.js"></script>
-<script src="js/pedidos.js"></script>
+                    <div class="avatar-cliente">
+                        ${inicial}
+                    </div>
 
-</body>
-</html>
+                    <strong>
+                        ${cliente.nome}
+                    </strong>
+
+                </div>
+
+            </td>
+
+
+            <td>
+                ${cliente.telefone}
+            </td>
+
+
+            <td>
+                ${cliente.email}
+            </td>
+
+
+            <td>
+                ${cliente.endereco}
+            </td>
+
+
+            <td>
+
+                <button
+                    class="btn-tabela"
+                    onclick="excluirCliente(${cliente.id})"
+                >
+
+                    <i class="bi bi-trash"></i>
+
+                </button>
+
+            </td>
+
+        </tr>
+
+        `;
+
+    });
+
+}
+
+
+document
+    .getElementById("buscarCliente")
+    ?.addEventListener(
+        "input",
+        carregarClientes
+    );
+
+
+/* =========================================================
+   FORM CLIENTE
+========================================================= */
+
+document
+    .getElementById("formCliente")
+    ?.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const cliente = {
+
+                id: Date.now(),
+
+                nome:
+                    document.getElementById("nomeCliente").value,
+
+                telefone:
+                    document.getElementById("telefoneCliente").value,
+
+                email:
+                    document.getElementById("emailCliente").value,
+
+                endereco:
+                    document.getElementById("enderecoCliente").value
+
+            };
+
+
+            const clientes = obterClientes();
+
+            clientes.push(cliente);
+
+
+            localStorage.setItem(
+                "inovapan_clientes",
+                JSON.stringify(clientes)
+            );
+
+
+            event.target.reset();
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById("modalCliente")
+                )
+                ?.hide();
+
+
+            carregarClientes();
+
+            carregarSelectClientes();
+
+
+            mostrarToast(
+                "Cliente cadastrado com sucesso!"
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   EXCLUIR CLIENTE
+========================================================= */
+
+function excluirCliente(id) {
+
+    const clientes =
+        obterClientes()
+        .filter(cliente => cliente.id !== id);
+
+
+    localStorage.setItem(
+        "inovapan_clientes",
+        JSON.stringify(clientes)
+    );
+
+
+    carregarClientes();
+
+    carregarSelectClientes();
+
+    mostrarToast(
+        "Cliente removido."
+    );
+
+}
+
+
+/* =========================================================
+   PEDIDOS / CARRINHO
+========================================================= */
+
+let carrinho =
+    JSON.parse(
+        localStorage.getItem("inovapan_carrinho")
+    ) || [];
+
+
+function adicionarCarrinho(
+    nome,
+    preco,
+    imagem
+) {
+
+    const item =
+        carrinho.find(
+            produto => produto.nome === nome
+        );
+
+
+    if (item) {
+
+        item.quantidade++;
+
+    } else {
+
+        carrinho.push({
+
+            nome,
+
+            preco,
+
+            imagem,
+
+            quantidade: 1
+
+        });
+
+    }
+
+
+    salvarCarrinho();
+
+    renderizarCarrinho();
+
+    mostrarToast(
+        `${nome} adicionado ao pedido!`
+    );
+
+}
+
+
+function salvarCarrinho() {
+
+    localStorage.setItem(
+        "inovapan_carrinho",
+        JSON.stringify(carrinho)
+    );
+
+}
+
+
+function alterarQuantidade(
+    nome,
+    quantidade
+) {
+
+    const item =
+        carrinho.find(
+            produto => produto.nome === nome
+        );
+
+
+    if (!item) return;
+
+
+    item.quantidade += quantidade;
+
+
+    if (item.quantidade <= 0) {
+
+        carrinho =
+            carrinho.filter(
+                produto => produto.nome !== nome
+            );
+
+    }
+
+
+    salvarCarrinho();
+
+    renderizarCarrinho();
+
+}
+
+
+function renderizarCarrinho() {
+
+    const lista =
+        document.getElementById("carrinhoLista");
+
+    const total =
+        document.getElementById("totalCarrinho");
+
+
+    if (!lista || !total) return;
+
+
+    if (carrinho.length === 0) {
+
+        lista.innerHTML = `
+
+        <div class="text-center py-4 text-muted">
+
+            <i class="bi bi-basket fs-2"></i>
+
+            <p class="mt-2">
+                Seu carrinho está vazio.
+            </p>
+
+        </div>
+
+        `;
+
+        total.textContent = "R$ 0,00";
+
+        return;
+    }
+
+
+    let valorTotal = 0;
+
+
+    lista.innerHTML = "";
+
+
+    carrinho.forEach(item => {
+
+        const subtotal =
+            item.preco * item.quantidade;
+
+
+        valorTotal += subtotal;
+
+
+        lista.innerHTML += `
+
+        <div class="carrinho-item">
+
+            <img
+                src="${item.imagem}"
+                alt="${item.nome}"
+            >
+
+            <div class="carrinho-item-info">
+
+                <strong>
+                    ${item.nome}
+                </strong>
+
+                <small>
+                    ${moeda(subtotal)}
+                </small>
+
+            </div>
+
+
+            <div class="quantidade">
+
+                <button
+                    onclick="alterarQuantidade(
+                        '${item.nome}',
+                        -1
+                    )"
+                >
+                    -
+                </button>
+
+                <span>
+                    ${item.quantidade}
+                </span>
+
+                <button
+                    onclick="alterarQuantidade(
+                        '${item.nome}',
+                        1
+                    )"
+                >
+                    +
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    total.textContent =
+        moeda(valorTotal);
+
+}
+
+
+/* =========================================================
+   SELECT DE CLIENTES
+========================================================= */
+
+function carregarSelectClientes() {
+
+    const select =
+        document.getElementById("clientePedido");
+
+    if (!select) return;
+
+
+    const clientes =
+        obterClientes();
+
+
+    select.innerHTML =
+        `<option value="">
+            Selecione o cliente
+        </option>`;
+
+
+    clientes.forEach(cliente => {
+
+        select.innerHTML += `
+
+        <option value="${cliente.id}">
+
+            ${cliente.nome}
+
+        </option>
+
+        `;
+
+    });
+
+}
+
+
+/* =========================================================
+   FINALIZAR PEDIDO
+========================================================= */
+
+function finalizarPedido() {
+
+    if (carrinho.length === 0) {
+
+        mostrarToast(
+            "Adicione pelo menos um produto."
+        );
+
+        return;
+    }
+
+
+    const cliente =
+        document.getElementById("clientePedido")?.value;
+
+
+    if (!cliente) {
+
+        mostrarToast(
+            "Selecione um cliente."
+        );
+
+        return;
+    }
+
+
+    let pedidos =
+        JSON.parse(
+            localStorage.getItem("inovapan_pedidos")
+        ) || [];
+
+
+    const total =
+        carrinho.reduce(
+            (soma, item) =>
+                soma + item.preco * item.quantidade,
+            0
+        );
+
+
+    pedidos.push({
+
+        id: Date.now(),
+
+        cliente,
+
+        itens: carrinho,
+
+        total,
+
+        data: new Date().toISOString()
+
+    });
+
+
+    localStorage.setItem(
+        "inovapan_pedidos",
+        JSON.stringify(pedidos)
+    );
+
+
+    carrinho = [];
+
+
+    salvarCarrinho();
+
+    renderizarCarrinho();
+
+
+    mostrarToast(
+        "Pedido finalizado com sucesso!"
+    );
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+function carregarDashboard() {
+
+    const clientes =
+        obterClientes();
+
+    const produtos =
+        obterProdutos();
+
+    const pedidos =
+        JSON.parse(
+            localStorage.getItem("inovapan_pedidos")
+        ) || [];
+
+
+    const vendas =
+        pedidos.reduce(
+            (soma, pedido) =>
+                soma + pedido.total,
+            0
+        );
+
+
+    const totalClientes =
+        document.getElementById("totalClientes");
+
+    const totalProdutos =
+        document.getElementById("totalProdutos");
+
+    const totalPedidos =
+        document.getElementById("totalPedidos");
+
+    const totalVendas =
+        document.getElementById("totalVendas");
+
+
+    if (totalClientes)
+        totalClientes.textContent =
+            clientes.length;
+
+
+    if (totalProdutos)
+        totalProdutos.textContent =
+            produtos.length;
+
+
+    if (totalPedidos)
+        totalPedidos.textContent =
+            pedidos.length;
+
+
+    if (totalVendas)
+        totalVendas.textContent =
+            moeda(vendas);
+
+
+    const relatorioVendas =
+        document.getElementById("relatorioVendas");
+
+    const relatorioPedidos =
+        document.getElementById("relatorioPedidos");
+
+    const ticketMedio =
+        document.getElementById("ticketMedio");
+
+
+    if (relatorioVendas)
+        relatorioVendas.textContent =
+            moeda(vendas);
+
+
+    if (relatorioPedidos)
+        relatorioPedidos.textContent =
+            pedidos.length;
+
+
+    if (ticketMedio) {
+
+        ticketMedio.textContent =
+            pedidos.length
+                ? moeda(vendas / pedidos.length)
+                : "R$ 0,00";
+
+    }
+
+}
+
+
+/* =========================================================
+   INICIALIZAÇÃO
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        obterProdutos();
+
+        carregarProdutos();
+
+        carregarClientes();
+
+        carregarSelectClientes();
+
+        renderizarCarrinho();
+
+        carregarDashboard();
+
+    }
+);
