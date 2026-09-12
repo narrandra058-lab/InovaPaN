@@ -3,203 +3,167 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Clientes | InovaPan</title>
+<title>Clientes | InovaPan</title>
 
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
-    >
-
-    <link rel="stylesheet" href="css/estilo.css">
+<link rel="stylesheet" href="css/estilo.css">
 
 </head>
 
 <body>
 
-<div class="d-flex">
+<div class="layout-sistema">
 
 <aside class="sidebar">
 
-    <div class="sidebar-logo">
-        <a href="index.html">
-            <i class="bi bi-shop"></i>
-            InovaPan
-        </a>
-    </div>
+<a href="index.html" class="logo-inovapan">
 
-    <div class="sidebar-subtitle">
-        Sistema de Gestão
-    </div>
+<span class="logo-icon">
+<i class="bi bi-cup-hot-fill"></i>
+</span>
 
-    <nav class="sidebar-menu">
+<span>
+<strong>InovaPan</strong>
+<small>Gestão de Panificadora</small>
+</span>
 
-        <a href="dashboard.html">
-            <i class="bi bi-speedometer2"></i>
-            Dashboard
-        </a>
+</a>
 
-        <a href="clientes.html">
-            <i class="bi bi-people"></i>
-            Clientes
-        </a>
+<p class="menu-titulo">Menu principal</p>
 
-        <a href="produtos.html">
-            <i class="bi bi-box-seam"></i>
-            Produtos
-        </a>
+<a href="dashboard.html" class="menu-link">
+<i class="bi bi-grid-1x2-fill"></i>
+<span>Dashboard</span>
+</a>
 
-        <a href="pedidos.html">
-            <i class="bi bi-cart-check"></i>
-            Pedidos
-        </a>
+<a href="pedidos.html" class="menu-link">
+<i class="bi bi-receipt"></i>
+<span>Pedidos</span>
+</a>
 
-        <a href="relatorios.html">
-            <i class="bi bi-bar-chart"></i>
-            Relatórios
-        </a>
+<a href="produtos.html" class="menu-link">
+<i class="bi bi-basket2-fill"></i>
+<span>Produtos</span>
+</a>
 
-        <hr>
+<a href="clientes.html" class="menu-link ativo">
+<i class="bi bi-people-fill"></i>
+<span>Clientes</span>
+</a>
 
-        <a href="index.html">
-            <i class="bi bi-house"></i>
-            Página inicial
-        </a>
-
-    </nav>
+<a href="relatorios.html" class="menu-link">
+<i class="bi bi-bar-chart-fill"></i>
+<span>Relatórios</span>
+</a>
 
 </aside>
 
-<main class="conteudo-principal">
+
+<main class="conteudo-sistema">
 
 <header class="topbar">
 
-    <div>
+<div class="topbar-titulo">
 
-        <button
-            class="btn btn-menu-mobile"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#menuMobile"
-        >
-            <i class="bi bi-list"></i>
-        </button>
+<strong>Clientes</strong>
 
-        <span class="titulo-pagina">
-            Clientes
-        </span>
+<span>Cadastro e relacionamento</span>
 
-    </div>
+</div>
 
-    <div class="usuario-topo">
-        <i class="bi bi-person-circle"></i>
-        Administrador
-    </div>
+<div class="usuario">
+
+<strong>Administrador</strong>
+
+<div class="usuario-avatar">A</div>
+
+</div>
 
 </header>
 
-<section class="container-fluid p-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+<div class="pagina-conteudo">
 
-        <div>
+<div class="titulo-pagina d-flex justify-content-between align-items-center">
 
-            <h1 class="fw-bold">
-                Cadastro de Clientes
-            </h1>
+<div>
 
-            <p class="text-muted mb-0">
-                Cadastre e gerencie os clientes da panificadora.
-            </p>
+<h1>Clientes</h1>
 
-        </div>
+<p>Cadastre e gerencie os clientes.</p>
 
-        <button
-            class="btn btn-inovapan"
-            data-bs-toggle="modal"
-            data-bs-target="#modalCliente"
-        >
-            <i class="bi bi-plus-lg"></i>
-            Novo cliente
-        </button>
+</div>
 
-    </div>
+<button
+class="btn btn-principal"
+data-bs-toggle="modal"
+data-bs-target="#modalCliente"
+>
 
-    <div id="mensagemCliente"></div>
+<i class="bi bi-person-plus"></i>
+Novo cliente
 
-    <div class="card">
+</button>
 
-        <div class="card-header bg-white py-3">
+</div>
 
-            <h5 class="mb-0 fw-bold">
-                Clientes cadastrados
-            </h5>
 
-        </div>
+<div class="ferramentas">
 
-        <div class="card-body">
+<div class="campo-busca">
 
-            <div class="table-responsive">
+<i class="bi bi-search"></i>
 
-                <table class="table align-middle">
+<input
+type="text"
+id="buscarCliente"
+placeholder="Buscar por nome, telefone ou e-mail..."
+>
 
-                    <thead>
+</div>
 
-                        <tr>
-                            <th>Nome</th>
-                            <th>Telefone</th>
-                            <th>E-mail</th>
-                            <th>Endereço</th>
-                            <th class="text-end">Ações</th>
-                        </tr>
+</div>
 
-                    </thead>
 
-                    <tbody id="tabelaClientes">
+<div class="tabela-container">
 
-                    </tbody>
+<table class="tabela">
 
-                </table>
+<thead>
 
-            </div>
+<tr>
 
-            <div id="clientesVazio" class="estado-vazio">
+<th>Cliente</th>
+<th>Telefone</th>
+<th>E-mail</th>
+<th>Endereço</th>
+<th>Ações</th>
 
-                <i class="bi bi-people"></i>
+</tr>
 
-                <h5>
-                    Nenhum cliente cadastrado
-                </h5>
+</thead>
 
-                <p>
-                    Clique em "Novo cliente" para começar.
-                </p>
+<tbody id="listaClientes">
 
-            </div>
+</tbody>
 
-        </div>
+</table>
 
-    </div>
+</div>
 
-</section>
+</div>
 
 </main>
 
 </div>
 
-<!-- MODAL CLIENTE -->
 
-<div
-    class="modal fade"
-    id="modalCliente"
-    tabindex="-1"
->
+<div class="modal fade" id="modalCliente">
 
 <div class="modal-dialog">
 
@@ -207,107 +171,88 @@
 
 <div class="modal-header">
 
-    <h5 class="modal-title fw-bold">
-        Novo cliente
-    </h5>
+<h5 class="modal-title">
+Novo cliente
+</h5>
 
-    <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="modal"
-    ></button>
+<button
+class="btn-close"
+data-bs-dismiss="modal">
+</button>
 
 </div>
 
-<form id="formCliente">
 
 <div class="modal-body">
 
-    <div class="mb-3">
+<form id="formCliente">
 
-        <label for="nome" class="form-label">
-            Nome *
-        </label>
+<div class="mb-3">
 
-        <input
-            type="text"
-            class="form-control"
-            id="nome"
-            required
-        >
+<label class="form-label">
+Nome completo
+</label>
 
-    </div>
-
-    <div class="mb-3">
-
-        <label for="telefone" class="form-label">
-            Telefone *
-        </label>
-
-        <input
-            type="tel"
-            class="form-control"
-            id="telefone"
-            placeholder="(89) 99999-9999"
-            required
-        >
-
-    </div>
-
-    <div class="mb-3">
-
-        <label for="email" class="form-label">
-            E-mail
-        </label>
-
-        <input
-            type="email"
-            class="form-control"
-            id="email"
-            placeholder="cliente@email.com"
-        >
-
-    </div>
-
-    <div class="mb-3">
-
-        <label for="endereco" class="form-label">
-            Endereço
-        </label>
-
-        <textarea
-            class="form-control"
-            id="endereco"
-            rows="3"
-        ></textarea>
-
-    </div>
-
-    <small class="text-muted">
-        * Campos obrigatórios
-    </small>
+<input
+class="form-control"
+id="nomeCliente"
+required
+>
 
 </div>
 
-<div class="modal-footer">
 
-    <button
-        type="button"
-        class="btn btn-secondary"
-        data-bs-dismiss="modal"
-    >
-        Cancelar
-    </button>
+<div class="mb-3">
 
-    <button
-        type="submit"
-        class="btn btn-inovapan"
-    >
-        <i class="bi bi-check-lg"></i>
-        Salvar cliente
-    </button>
+<label class="form-label">
+Telefone
+</label>
+
+<input
+class="form-control"
+id="telefoneCliente"
+required
+>
 
 </div>
+
+
+<div class="mb-3">
+
+<label class="form-label">
+E-mail
+</label>
+
+<input
+type="email"
+class="form-control"
+id="emailCliente"
+required
+>
+
+</div>
+
+
+<div class="mb-3">
+
+<label class="form-label">
+Endereço
+</label>
+
+<input
+class="form-control"
+id="enderecoCliente"
+required
+>
+
+</div>
+
+
+<button class="btn btn-principal w-100">
+
+Cadastrar cliente
+
+</button>
 
 </form>
 
@@ -317,66 +262,15 @@
 
 </div>
 
-<!-- MENU MOBILE -->
-
-<div class="offcanvas offcanvas-start" id="menuMobile">
-
-<div class="offcanvas-header">
-
-    <h5 class="fw-bold">
-        <i class="bi bi-shop"></i>
-        InovaPan
-    </h5>
-
-    <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="offcanvas"
-    ></button>
-
 </div>
 
-<div class="offcanvas-body">
 
-<nav class="menu-mobile">
+<div id="toast" class="toast-inovapan"></div>
 
-    <a href="dashboard.html">
-        <i class="bi bi-speedometer2"></i>
-        Dashboard
-    </a>
 
-    <a href="clientes.html">
-        <i class="bi bi-people"></i>
-        Clientes
-    </a>
-
-    <a href="produtos.html">
-        <i class="bi bi-box-seam"></i>
-        Produtos
-    </a>
-
-    <a href="pedidos.html">
-        <i class="bi bi-cart-check"></i>
-        Pedidos
-    </a>
-
-    <a href="relatorios.html">
-        <i class="bi bi-bar-chart"></i>
-        Relatórios
-    </a>
-
-</nav>
-
-</div>
-
-</div>
-
-<script
-src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="js/app.js"></script>
-<script src="js/clientes.js"></script>
 
 </body>
 </html>
