@@ -669,4 +669,612 @@ textarea {
     .table-container {
         overflow-x: auto;
     }
+} /* =========================================
+   INOVAPAN - PRODUTOS
+========================================= */
+
+
+/* LOGO */
+
+.logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #d9893d;
+
+    border-radius: 12px;
+
+    font-size: 20px;
+
+}
+
+
+/* SIDEBAR INFERIOR */
+
+.sidebar-bottom {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 16px;
+    right: 16px;
+
+}
+
+
+/* TOPO DIREITO */
+
+.topbar-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+}
+
+
+/* BUSCA */
+
+.search-box {
+
+    width: 260px;
+
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 0 13px;
+
+    background: #faf8f5;
+
+    border: 1px solid #ebe4dc;
+
+    border-radius: 10px;
+
+}
+
+
+.search-box i {
+
+    color: #9a8d82;
+
+}
+
+
+.search-box input {
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    width: 100%;
+
+    font-size: 13px;
+
+}
+
+
+/* NOTIFICAÇÃO */
+
+.notification {
+
+    position: relative;
+
+    border: none;
+
+    background: transparent;
+
+    font-size: 19px;
+
+    color: #5e5148;
+
+}
+
+
+.notification span {
+
+    position: absolute;
+
+    top: 1px;
+
+    right: 0;
+
+    width: 6px;
+    height: 6px;
+
+    background: #d9893d;
+
+    border-radius: 50%;
+
+}
+
+
+/* USUÁRIO */
+
+.user-profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.user-avatar {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #ead2b8;
+
+    color: #70452d;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+.user-profile strong {
+
+    display: block;
+
+    font-size: 12px;
+
+}
+
+
+.user-profile small {
+
+    display: block;
+
+    font-size: 10px;
+
+    color: #94887e;
+
+}
+
+
+/* CABEÇALHO DA PÁGINA */
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+
+}
+
+
+.page-header h2 {
+
+    margin: 5px 0;
+
+    color: #4a2c1d;
+
+    font-size: 25px;
+
+}
+
+
+.page-header p {
+
+    margin: 0;
+
+    color: #8b7d73;
+
+    font-size: 13px;
+
+}
+
+
+.page-label {
+
+    color: #c5772d;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.2px;
+
+}
+
+
+/* FILTROS */
+
+.filter-area {
+
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.product-search {
+
+    flex: 1;
+
+    height: 45px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 0 15px;
+
+    background: white;
+
+    border: 1px solid #ebe4dc;
+
+    border-radius: 11px;
+
+}
+
+
+.product-search i {
+
+    color: #a39387;
+
+}
+
+
+.product-search input {
+
+    border: none;
+
+    outline: none;
+
+    width: 100%;
+
+    font-size: 13px;
+
+}
+
+
+.filter-area .form-select {
+
+    width: 200px;
+
+    height: 45px;
+
+}
+
+
+/* =========================================
+   GRADE DE PRODUTOS
+========================================= */
+
+.products-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+}
+
+
+/* CARD */
+
+.product-card {
+
+    background: white;
+
+    border: 1px solid #ebe4dc;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 6px 20px
+        rgba(74, 44, 29, 0.06);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease;
+
+}
+
+
+.product-card:hover {
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 14px 30px
+        rgba(74, 44, 29, 0.13);
+
+}
+
+
+/* FOTO */
+
+.product-image {
+
+    height: 165px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background: #eee;
+
+}
+
+
+.product-image img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform .4s ease;
+
+}
+
+
+.product-card:hover
+.product-image img {
+
+    transform: scale(1.06);
+
+}
+
+
+/* ETIQUETA */
+
+.product-category {
+
+    position: absolute;
+
+    top: 12px;
+
+    left: 12px;
+
+    padding: 5px 9px;
+
+    background:
+        rgba(255,255,255,.92);
+
+    color: #70452d;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+}
+
+
+/* INFORMAÇÕES */
+
+.product-info {
+
+    padding: 17px;
+
+}
+
+
+.product-info h3 {
+
+    font-size: 16px;
+
+    color: #4a2c1d;
+
+    margin-bottom: 6px;
+
+}
+
+
+.product-info p {
+
+    height: 38px;
+
+    margin: 0 0 15px;
+
+    color: #8a7d73;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+}
+
+
+/* RODAPÉ DO CARD */
+
+.product-footer {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+}
+
+
+.product-footer strong {
+
+    font-size: 17px;
+
+    color: #70452d;
+
+}
+
+
+/* BOTÃO + */
+
+.add-product {
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #70452d;
+
+    color: white;
+
+    font-size: 18px;
+
+    transition: .2s;
+
+}
+
+
+.add-product:hover {
+
+    background: #d9893d;
+
+    transform: scale(1.08);
+
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal-content {
+
+    border: none;
+
+    border-radius: 18px;
+
+}
+
+
+.modal-header {
+
+    padding: 22px 25px;
+
+}
+
+
+.modal-body {
+
+    padding: 10px 25px 25px;
+
+}
+
+
+/* =========================================
+   RESPONSIVO
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .products-grid {
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+    }
+
+}
+
+
+@media (max-width: 800px) {
+
+    .products-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+    .topbar-right .search-box,
+    .user-profile {
+
+        display: none;
+
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .products-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .page-header {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+        flex-direction: column;
+
+    }
+
+
+    .filter-area {
+
+        flex-direction: column;
+
+    }
+
+
+    .filter-area .form-select {
+
+        width: 100%;
+
+    }
+
 }
